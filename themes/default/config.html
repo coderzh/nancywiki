@@ -1,0 +1,31 @@
+<!DOCTYPE html public "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="Head">
+    <title>{{config.title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta id="metaKeywords" name="keywords" content="CoderZh,NancyWiki"/>
+    <!-- <link id="MainCss" type="text/css" rel="stylesheet" href="/static/css/style.css" /> -->
+</head>
+<body>
+    <div>
+        <a href="{{wiki.url}}?edit=1">编辑</a>
+        <a href="/admins/">设置</a>
+        {% if user %}
+        {{user.nickname}} <a href="{{logout_url}}">退出</a>
+        {% else %}
+        <a href="{{login_url}}">登陆</a>
+        {% endif %}
+    </div>
+    <div>
+        <form action="/config/" method="post">
+            <div>
+                <select name="theme">
+                    <option value="default" {% ifequal config.theme "default" %} select="1" {% endifequal %}>default</option>
+                </select>：皮肤
+            </div>
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+</body>
+</html>

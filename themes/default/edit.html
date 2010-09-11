@@ -1,0 +1,32 @@
+<!DOCTYPE html public "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="Head">
+<title>test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta id="metaKeywords" name="keywords" content="CoderZh,NancyWiki"/>
+<!-- <link id="MainCss" type="text/css" rel="stylesheet" href="/static/css/style.css" /> -->
+<script type="text/javascript">
+    wmd_options = {
+        // format sent to the server.  Use "Markdown" to return the markdown source.
+		output: "Markdown",
+		// line wrapping length for lists, blockquotes, etc.
+		lineLength: 80,
+		// toolbar buttons.  Undo and redo get appended automatically.
+		buttons: "bold italic | link blockquote code image | ol ul heading hr",
+		// option to automatically add WMD to the first textarea found.  See apiExample.html for usage.
+		autostart: true
+	};
+</script>
+<script type="text/javascript" src="/static/wmd/wmd.js"></script>
+</head>
+<body>
+    <form method="post" action="/{{wiki.url}}">
+        <div>标题：<input type="text" size=80 name="title" value="{{wiki.title}}" /></div>
+        <div>正文：<textarea name="markdown" cols=80 rows=20>{{wiki.markdown}}</textarea></div>
+        <textarea style="display:none;" name="html" class="wmd-output"></textarea>
+        <div><input type="submit" value="提交" /></div> 
+    </form>
+    <div name="htmlcontent" class="wmd-preview"></div>
+</body>
+</html>

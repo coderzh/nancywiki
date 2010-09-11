@@ -1,0 +1,25 @@
+application: coderzh
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon.ico
+  static_files: static/favicon.ico
+  upload: static/favicon.ico
+
+- url: /static
+  static_dir: static
+
+- url: /themes/(.*?)/static/(.*)
+  static_files: themes/\1/static/\2
+  upload: themes/(.*?)/static/(.*)
+
+- url: /admins/.*
+  script: $PYTHON_LIB/google/appengine/ext/admin
+  login: admin
+
+- url: /.*
+  script: main.py
+
+
