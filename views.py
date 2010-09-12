@@ -42,10 +42,10 @@ class BaseRequestHandler(webapp.RequestHandler):
 class WikiPageHandler(BaseRequestHandler):
     def get(self, url):
         wiki = Wiki.get_by_url(url)
-        user = users.get_current_user()
         editmode = self.request.get('edit')
+        is_demo = url == 'demo'
         if editmode == '1':
-            if user:
+            if is_demo or users.is_current_user_admin():
                 self.template_render('edit.html', { 'wiki' : wiki })
             else:
                 login_url = users.create_login_url(self.request.uri)
@@ -54,23 +54,31 @@ class WikiPageHandler(BaseRequestHandler):
             self.template_render('wiki.html', { 'wiki' : wiki })
 
     def post(self, url):
-        wiki = Wiki.get_by_url(url)
-        wiki.title = self.request.get('title')
-        wiki.markdown = self.request.get('markdown')
-        wiki.html = self.request.get('html')
-        wiki.author = users.get_current_user()
-        wiki.put()
+        is_demo = url == 'demo'
+        if is_demo or users.is_current_user_admin():
+            wiki = Wiki.get_by_url(url)
+            wiki.title = self.request.get('title')
+            wiki.markdown = self.request.get('markdown')
+            wiki.html = self.request.get('html')
+            wiki.author = users.get_current_user()
+            wiki.put()
         self.redirect('/' + url)
 
 class ConfigPageHandler(BaseRequestHandler):
     def get(self):
-        self.template_render('config.html')
+        if users.is_current_user_admin():
+            self.template_render('config.html')
+        else:
+            self.redirect('/')
 
     def post(self):
-        configs = { 
+        if users.is_current_user_admin():
+            configs = { 
                 'theme' : self.request.get('theme'),
                 'domain' : self.request.get('domain'),
                 'title' : self.request.get('title'),
-                }
-        Config.update_configs(configs)
-        self.redirect('/config/')
+            }
+            Config.update_configs(configs)
+            self.redirect('/config/')
+        else:
+            self.redirect('/')

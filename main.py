@@ -16,11 +16,20 @@
 
 __author__ = 'CoderZh'
 
+from datetime import timedelta
 import wsgiref.handlers
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
 import views
+
+register = webapp.template.create_template_register()
+
+@register.filter
+def timezone(value, offset):
+    return value + timedelta(hours=offset)
+
+template.register_template_library('main')
 
 def main():
     application = webapp.WSGIApplication([

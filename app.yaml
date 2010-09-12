@@ -15,7 +15,7 @@ handlers:
   static_files: themes/\1/static/\2
   upload: themes/(.*?)/static/(.*)
 
-- url: /admins/.*
+- url: /admin/.*
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
 

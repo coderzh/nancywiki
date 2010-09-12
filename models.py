@@ -56,7 +56,11 @@ class Config(db.Model):
 
     @staticmethod
     def get_default_configs():
-        return { 'theme' : 'default' }
+        return { 
+                'theme' : 'simple',
+                'title' : 'NancyWiki',
+                'domain': 'http://wiki.coderzh.com',
+                }
 
     @staticmethod
     def update_configs(configs):

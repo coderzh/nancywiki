@@ -510,6 +510,11 @@ head:first-child+body #content #toc ul {
 	color: red;
 }
 
+#info {
+    text-align: right;
+    margin: 30px 26px;
+}
+
 /* --------------- footer --------------- */
 
 #footer {
@@ -517,7 +522,7 @@ head:first-child+body #content #toc ul {
 	border-top: 1px solid #ccc;
 	font-size: 10px;
 	padding: 16px 0 26px 0;
-	margin: 40px 0 0 0;
+	margin: 30px 0 0 0;
 	text-align: center;
 	}
 
