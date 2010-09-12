@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{wiki.title}}|{{config.title}}{% endblock %}
+
+{% block navlinks %}
+<a href="/{{wiki.url}}">查看</a>
+{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+    wmd_options = {
+        // format sent to the server.  Use "Markdown" to return the markdown source.
+		output: "Markdown",
+		// line wrapping length for lists, blockquotes, etc.
+		lineLength: 80,
+		// toolbar buttons.  Undo and redo get appended automatically.
+		buttons: "bold italic | link blockquote code image | ol ul heading hr",
+		// option to automatically add WMD to the first textarea found.  See apiExample.html for usage.
+		autostart: true
+	};
+</script>
+<script type="text/javascript" src="/static/wmd/wmd.js"></script>
+
+<form method="post" action="/{{wiki.url}}">
+    <table class="wikiTable">
+        <tr>
+            <td>标题：</td>
+            <td><input class="input_text" type="text" size=80 name="title" value="{{wiki.title}}" /></td>
+        </tr>
+        <tr>
+            <td>正文：</td>
+            <td>
+                <textarea class="markdown_text" name="markdown">{{wiki.markdown}}</textarea>
+                <textarea style="display:none;" name="html" class="wmd-output"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="提交" /></td>
+        </tr>
+    </table>
+</form>
+<div id="content" class="wmd-preview"></div>
+{% endblock %}
+
+{% block comments %}
+{% endblock %}

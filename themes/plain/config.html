@@ -1,0 +1,28 @@
+<div>
+    <form action="/config/" method="post">
+        <table class="wikiTable">
+            <tr>
+                <td>域名：</td>
+                <td><input type="text" name="domain" value="{{config.domain}}" /></td>
+            </tr>
+            <tr>
+                <td>标题：</td>
+                <td><input type="text" name="title" value="{{config.title}}" /></td>
+            </tr>
+            <tr>
+                <td width="100px">皮肤：</td>
+                <td>
+                    <select name="theme">
+                        <option value="simple">simple</option>
+                        <option value="plain" selected="selected">plain</option>
+                        
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="提交" /></td>
+            </tr>
+        </table>
+    </form>
+</div>

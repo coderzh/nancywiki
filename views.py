@@ -44,8 +44,12 @@ class WikiPageHandler(BaseRequestHandler):
         wiki = Wiki.get_by_url(url)
         user = users.get_current_user()
         editmode = self.request.get('edit')
-        if editmode == '1' and user:
-            self.template_render('edit.html', { 'wiki' : wiki })
+        if editmode == '1':
+            if user:
+                self.template_render('edit.html', { 'wiki' : wiki })
+            else:
+                login_url = users.create_login_url(self.request.uri)
+                self.redirect(login_url)
         else:
             self.template_render('wiki.html', { 'wiki' : wiki })
 
@@ -63,6 +67,10 @@ class ConfigPageHandler(BaseRequestHandler):
         self.template_render('config.html')
 
     def post(self):
-        configs = { 'theme' : self.request.get('theme') }
+        configs = { 
+                'theme' : self.request.get('theme'),
+                'domain' : self.request.get('domain'),
+                'title' : self.request.get('title'),
+                }
         Config.update_configs(configs)
         self.redirect('/config/')

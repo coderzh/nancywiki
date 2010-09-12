@@ -1,0 +1,49 @@
+<!DOCTYPE html public "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head">
+    <title>{% block title %}Nancy Wiki{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta id="metaKeywords" name="keywords" content="CoderZh,NancyWiki"/>
+    <link type="text/css" rel="stylesheet" href="/themes/simple/static/css/style.css" />
+</head>
+<body>
+    <div><a name="top"></a></div>
+    <div id="header">
+        <div id="logo">
+            <img height="42" width="42" alt="NancyWiki" src="/themes/simple/static/images/logo.png">
+        </div>
+        <div id="logotext">
+            <a href="/">{{config.title}}</a>
+        </div>
+    </div>
+    <div id="subheader">
+        <div id="searchbox">
+            <form target="_blank" method="get" action="http://www.google.com/search">
+			    <input name="sitesearch" value="{{config.domain}}" type="hidden">
+				<input name="hl" value="zh-CN" type="hidden">
+				<input name="ie" value="utf-8" type="hidden">
+				<input class="search_text" type="text" name="q" id="query" />
+				<input class="search_button" type="image" name="Search" src="/themes/simple/static/images/search.png"/>
+			</form>
+        </div> 
+        <div id="navlinks">
+            {% if user %}
+            {{user.nickname}} <a href="{{logout_url}}">退出</a>
+            <a href="/config/">设置</a>            
+            {% else %}
+            <a href="{{login_url}}">登陆</a>
+            {% endif %}
+            {% block navlinks %}{% endblock %}
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+    <p class="center"><a href="#top">Top of Page</a></p>
+    {% block comments %}{% endblock %}
+    <div id="footer">
+        <address>
+            <img src="http://code.google.com/appengine/images/appengine-silver-120x30.gif" alt="Powered by Google App Engine" />&nbsp;
+            Copyleft ©2010 <a href="http://code.google.com/p/nancywiki/">NancyWiki</a> By CoderZh
+        </address>
+    </div>
+</body>
+</html>

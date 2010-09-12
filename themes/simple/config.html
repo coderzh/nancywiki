@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}设置|{{config.title}}{% endblock %}
+
+{% block navlinks %}
+<a href="javascript:history.back()">返回</a> 
+{% endblock %}
+
+{% block content %}
+<div>
+    <form action="/config/" method="post">
+        <table class="wikiTable">
+            <tr>
+                <td>域名：</td>
+                <td><input class="input_text" size=100 type="text" name="domain" value="{{config.domain}}" /></td>
+            </tr>
+            <tr>
+                <td>标题：</td>
+                <td><input class="input_text" size=100 type="text" name="title" value="{{config.title}}" /></td>
+            </tr>
+            <tr>
+                <td width="100px">皮肤：</td>
+                <td>
+                    <select name="theme">
+                        <option selected="selected">simple</option>
+                        <option>plain</option>>
+                    </select>
+                </td>
+            </tr>
+            <tr><td col="2"></td></tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="提交" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}
