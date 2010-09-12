@@ -93,7 +93,6 @@ input {
 #logotext a:link, #logotext a:visited {
     color: #fff;
     text-decoration: none;
-    display: block;
 }
 
 #subheader {
