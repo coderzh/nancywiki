@@ -265,6 +265,7 @@ input {
 }
 
 #content pre { 
+/*
 	font-family: Monaco, sans-serif;
 	background-color: #F6F8FB;
 	border: 1px solid #91A2B4;
@@ -273,6 +274,7 @@ input {
 	display: block;
 	margin: 10px 0 5px 24px;
 	padding: 10px;
+*/
 }
 
 
